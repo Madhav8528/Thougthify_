@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+ thought
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center mt-5">This is thought page</h1>
+<a class="btn btn-primary mb-4" href="{% url 'create_thought'%}">Share your Thought !</a>
+
+<div class="container row ">
+  
+
+     {% for thought in thoughts %}
+      
+     <div class="card mb-4" style="width: 18rem;">
+        <img src="{{thought.image.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{thought.user.username}}</h5>
+          <p class="card-text">{{thought.text}}</p>
+          {% if thought.user == user%}
+          <a href="{%url 'edit_thought' thought.id%}" class="btn btn-primary">Edit</a>
+          <a href="{%url 'thought_delete' thought.id%}" class="btn btn-danger">Delete</a>
+          {% endif %}
+        </div>
+      </div>
+
+     {% endfor %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+ thought
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center mt-5">This is thought page</h1>
+
+<h2>
+    {% if form.instance.pk %}
+    Edit Your thought
+    {% else %}
+    Share your thought
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        {{form.as_p}}
+
+     <button class="btn btn-primary" type="submit">Submit</button>   
+    </form>
+   <a href="{% url 'thought_list' %}">Back to Main Page</a> 
+</h2>
+
+{% endblock %}
